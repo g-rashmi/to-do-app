@@ -1,11 +1,14 @@
 import { useState } from "react";
+const box = {
+  textAlign: "center",
+};
 
 export const CreateTodo = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleAddTodo = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     fetch("http://localhost:3000/todo", {
       method: "POST",
       body: JSON.stringify({
@@ -19,7 +22,7 @@ export const CreateTodo = () => {
       .then(async function (res) {
         if (res.ok) {
           const json = await res.json();
-          alert("Todo added"); 
+          alert("Todo added");
         } else {
           throw new Error("Failed to add todo");
         }
@@ -31,12 +34,13 @@ export const CreateTodo = () => {
   };
 
   return (
-    <div>
+    <div style={box}>
       <input
         id="title"
         style={{
           padding: 10,
           margin: 10,
+          width: 310,
         }}
         type="text"
         placeholder="Title"
@@ -49,6 +53,7 @@ export const CreateTodo = () => {
         style={{
           padding: 10,
           margin: 10,
+          width: 310,
         }}
         type="text"
         placeholder="Description"
@@ -60,6 +65,9 @@ export const CreateTodo = () => {
         style={{
           padding: 10,
           margin: 10,
+          color: "white",
+          backgroundColor: "BLUE",
+          border: "none",
         }}
         onClick={handleAddTodo} // Call handleAddTodo function
       >
