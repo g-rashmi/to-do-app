@@ -8,7 +8,7 @@ const { createTodo, updateTodo } = require("./types");
 app.use(cors());
 app.use(express.json());
 
-const port = 3000;
+const PORT = process.env.PORT||3000;
 
 app.post("/todo", async (req, res) => {
   const createPayload = req.body;
@@ -110,6 +110,6 @@ app.put("/todo/:id", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log("Server started on port", port);
 });
